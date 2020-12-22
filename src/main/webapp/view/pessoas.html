@@ -1,0 +1,92 @@
+<html>
+<head>
+<meta charset="ISO-8859-1">
+</head>
+<div ng-controller="pessoaController">
+	<form novalidate name="pessoaForm">
+		<div class="form-group row">
+			<label for="nomePessoa">Nome da Pessoa</label> <input type="text"
+				ng-model="pessoa.nome" class="form-control" name="nomePessoa"
+				placeholder="Nome da Pessoa" required> <span
+				ng-show="pessoaForm.nomePessoa.$error.required && pessoaForm.nomePessoa.$dirty">O
+				Nome da Pessoa deve ser informado!</span>
+		</div>
+
+		<div class="form-group row">
+			<label for="perfilPessoa">Tipo de Pessoa</label> <select
+				ng-model="pessoa.tipoPessoa" class="form-control" name="tipoPessoa"
+				required>
+				<option value="FISICA">Fisica</option>
+				<option value="JURIDICA">Juridica</option>
+			</select> <span
+				ng-show="pessoaForm.tipoPessoa.$error.required && operadorForm.tipoPessoa.$dirty">O
+				Tipo da Pessoa deve ser informado!</span>
+		</div>
+
+		<div class="form-group row">
+			<label for="codigoPessoa">CPF/CNPJ</label> <input type="text"
+				ng-model="pessoa.codigo" class="form-control" name="codigoPessoa"
+				placeholder="CPF/CNPJ" required> <span
+				ng-show="pessoaForm.codigoPessoa.$error.required && pessoaForm.codigoPessoa.$dirty">O
+				CPF/CNPJ da Pessoa deve ser informado!</span>
+		</div>
+
+		<div class="form-group row">
+			<label for="dataNascimentoPessoa">Data de Nascimento</label> <input
+				type="date" ng-model="pessoa.dataNascimento" class="form-control"
+				name="dataNascimentoPessoa" required> <span
+				ng-show="pessoaForm.dataNascimentoPessoa.$error.required && pessoaForm.dataNascimentoPessoa.$dirty">A
+				Data de Nascimento da Pessoa deve ser informada!</span>
+		</div>
+
+		<div class="form-group row">
+			<label for="nomePaiPessoa">Nome do Pai</label> <input type="text"
+				ng-model="pessoa.nomePai" class="form-control" name="loginNomePai"
+				placeholder="Nome do Pai">
+		</div>
+
+		<div class="form-group row">
+			<label for="nomeMaePessoa">Nome da Mae</label> <input type="text"
+				ng-model="pessoa.nomeMae" class="form-control" name="loginNomeMae"
+				placeholder="Nome da Mae">
+		</div>
+
+		<button type="submit" class="btn btn-primary" 
+		    ng-click="savePessoa()"	ng-disabled="pessoaForm.$invalid">Salvar</button>
+		<button class="btn btn-secondary" ng-click="cancelUpdatePessoa()"
+			ng-disabled="pessoaForm.$invalid">Cancelar</button>
+	</form>
+
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<tr>
+				<th>Nome</th>
+				<th>Tipo de Pessoa</th>
+				<th>CPF/CNPJ</th>
+				<th>Data de Nascimento</th>
+				<th>Nome da Mae</th>
+				<th>Nome do Pai</th>
+				<th>Operador</th>
+				<th>Data de Cadastro</th>
+				<th></th>
+			</tr>
+			<tr ng-repeat="pessoa in pessoas">
+				<td>{{pessoa.nome}}</td>
+				<td>{{pessoa.tipoPessoa}}</td>
+				<td>{{pessoa.codigo}}</td>
+				<td>{{pessoa.dataNascimento | date: 'dd/MM/yyyy' }}</td>
+				<td>{{pessoa.nomeMae}}</td>
+				<td>{{pessoa.nomePai}}</td>
+				<td>{{pessoa.operador.nome}}</td>
+				<td>{{pessoa.dataCadastro | date: 'dd/MM/yyyy'}}</td>
+				<td>
+					<button type="button" class="btn btn-info"
+						ng-click="updatePessoaInit(pessoa)">Alterar</button>
+					<button type="button" class="btn btn-outline-danger"
+						ng-click="deletePessoa(pessoa)">Excluir</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+</html>

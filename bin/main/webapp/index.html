@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="appUserManager">
+<head>
+<meta charset="ISO-8859-1">
+<title>Gestão de Usuários</title>
+
+<!-- Importação do AngularJS -->
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular-route.js"></script>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-resource.js"></script>
+<!-- --------------------------------------------------------- -->
+
+<!-- Importação do Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+	crossorigin="anonymous"></script>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+<!-- --------------------------------------------------------- -->
+
+<!-- Importação dos Controladores JS do -->
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript"
+	src="js/controller/operador-controller.js"></script>
+<script type="text/javascript" src="js/controller/main-controller.js"></script>
+<script type="text/javascript" src="js/controller/pessoa-controller.js"></script>
+<script type="text/javascript"
+	src="js/controller/telefone-controller.js"></script>
+<script type="text/javascript" src="js/controller/login-controller.js"></script>
+<!-- --------------------------------------------------------- -->
+
+<script type="text/javascript" src="js/factory/operador-factory.js"></script>
+<script type="text/javascript" src="js/mask/ngMask.min.js"></script>
+
+</head>
+<body ng-controller="mainController">
+	<nav class="navbar navbar-expand-md navbar-light bg-light">
+		<a href="/login" class="navbar-brand">Tela Inicial</a>
+		<button type="button" class="navbar-toggler" data-toggle="collapse"
+			data-target="#navbarCollapse">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<div class="navbar-nav">
+				<a href="/operadores" class="nav-item nav-link">Operadores</a> <a
+					href="/pessoas" class="nav-item nav-link">Pessoas</a> <a
+					href="/telefones" class="nav-item nav-link">Telefones</a>
+			</div>
+			<div class="navbar-nav ml-auto">
+				<button type="button" ng-click="logout()" class="nav-item nav-link">{{logInOutButton}}</button>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Tela de Operadores -->
+	<div ng-view class="container"></div>
+</body>
+</html>

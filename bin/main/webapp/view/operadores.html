@@ -1,0 +1,72 @@
+<html>
+<head>
+<meta charset="ISO-8859-1">
+</head>
+<div ng-controller="operadorController">
+	<form novalidate name="operadorForm">
+		<div class="form-group row">
+			<label for="nomeOperador">Nome do Operador</label> <input type="text"
+				ng-model="operador.nome" class="form-control" name="nomeOperador"
+				placeholder="Nome do Operador" required> <span
+				ng-show="operadorForm.nomeOperador.$error.required && operadorForm.nomeOperador.$dirty">O
+				Nome do Operador deve ser informado!</span>
+		</div>
+
+		<div class="form-group row">
+			<label for="perfilOperador">Perfil</label> <select
+				ng-model="operador.perfil" class="form-control"
+				name="perfilOperador" required>
+				<option value="ANALISTA">Analista</option>
+				<option value="GERENTE">Gerente</option>
+			</select> <span
+				ng-show="operadorForm.perfilOperador.$error.required && operadorForm.perfilOperador.$dirty">O
+				Perfil do Operador deve ser informado!</span>
+		</div>
+
+		<div class="form-group row">
+			<label for="loginOperador">Login</label> <input type="text"
+				ng-model="usuario.login" class="form-control" name="loginOperador"
+				placeholder="Login" required> <span
+				ng-show="operadorForm.loginOperador.$error.required && operadorForm.loginOperador.$dirty">O
+				Login do Operador deve ser informado!</span>
+		</div>
+
+		<div class="form-group row">
+			<label for="senhaOperador">Senha</label> <input type="password"
+				ng-model="usuario.senha" class="form-control" name="senhaOperador"
+				placeholder="Senha" required> <span
+				ng-show="operadorForm.senhaOperador.$error.required && operadorForm.senhaOperador.$dirty">A
+				Senha do Operador deve ser informada!</span>
+		</div>
+
+		<button type="submit" class="btn btn-primary"
+			ng-click="saveOperador()" ng-disabled="operadorForm.$invalid">Salvar</button>
+		<button class="btn btn-secondary" ng-click="cancelUpdateOperador()"
+			ng-disabled="operadorForm.$pristine">Cancelar</button>
+	</form>	
+
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<tr>
+				<th>Nome</th>
+				<th>Login</th>
+				<th>Perfil</th>
+				<th>Data de Cadastro</th>
+				<th></th>
+			</tr>
+			<tr ng-repeat="operador in operadores">
+				<td>{{operador.nome}}</td>
+				<td>{{operador.usuario.login}}</td>
+				<td>{{operador.perfil}}</td>
+				<td>{{operador.dataCadastro | date: 'dd/MM/yyyy'}}</td>
+				<td>
+					<button type="button" class="btn btn-info"
+						ng-click="updateOperadorInit(operador)">Alterar</button>
+					<button type="button" class="btn btn-outline-danger"
+						ng-click="deleteOperador(operador)">Excluir</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+</html>

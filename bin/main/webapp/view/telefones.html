@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta charset="ISO-8859-1">
+</head>
+<body ng-controller="telefoneController">
+	<form novalidate name="telefoneForm">
+		<div class="form-group row">
+			<label for="dddTelefone">DDD</label> <input ng-maxlength="3"
+				type="number" ng-model="telefone.ddd" class="form-control"
+				name="dddTelefone" placeholder="DDD" required> <span
+				ng-show="telefoneForm.dddTelefone.$error.required && telefoneForm.dddTelefone.$dirty">
+				O DDD Deve ser informado!</span>
+		</div>
+		<div class="form-group row">
+			<label for="numeroTelefone">Numero</label> <input ng-maxlength="10"
+				ng-minlength="8" type="number" ng-model="telefone.numero"
+				class="form-control" name="numeroTelefone" placeholder="Numero"
+				required> <span
+				ng-show="telefoneForm.numeroTelefone.$error.required && telefoneForm.numeroTelefone.$dirty">
+				O Número de Telefone deve ser informado!</span>
+		</div>
+		<div class="form-group row">
+			<label for="tipoTelefone">Tipo</label> <select
+				ng-model="telefone.tipoTelefone" class="form-control"
+				name="tipoTelefone" required>
+				<option value="CELULAR">Celular</option>
+				<option value="COMERCIAL">Comercial</option>
+				<option value="FIXO">Fixo</option>
+			</select> <span
+				ng-show="telefoneForm.tipoTelefone.$error.required && operadorForm.tipoTelefone.$dirty">O
+				Tipo de Telefone deve ser informado!</span>
+		</div>
+
+		<div class="form-group row">
+			<label for="pessoaTelefone">Pessoa</label> <select ng-model="pessoa"
+				class="form-control" name="pessoaTelefone" required>
+				<option ng-repeat="pessoa in pessoas" value="{{pessoa}}">{{pessoa.nome}}</option>
+			</select> <span
+				ng-show="telefoneForm.pessoaTelefone.$error.required && operadorForm.pessoaTelefone.$dirty">O
+				Tipo de Telefone deve ser informado!</span>
+		</div>
+
+		<button type="submit" class="btn btn-primary"
+			ng-click="saveTelefone()" ng-disabled="telefoneForm.$invalid">Salvar</button>
+		<button class="btn btn-secondary" ng-click="cancelUpdateTelefone()"
+			ng-disabled="telefoneForm.$invalid">Cancelar</button>
+	</form>
+
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<tr>
+				<th>Pessoa</th>
+				<th>DDD</th>
+				<th>Numero</th>
+				<th>Tipo</th>
+				<th>Data de Cadastro</th>
+				<th>Operador</th>
+				<th></th>
+			</tr>
+			<tr ng-repeat="telefone in telefones">
+				<td>{{telefone.pessoa.nome}}</td>
+				<td>{{telefone.ddd}}</td>
+				<td>{{telefone.numero}}</td>
+				<td>{{telefone.tipo}}</td>
+				<td>{{telefone.dataCadastro | date : 'dd/MM/yyyy'}}</td>
+				<td>{{telefone.operador.nome}}</td>
+				<td>
+					<button type="button" class="btn btn-info"
+						ng-click="updateTelefoneInit(telefone)">Alterar</button>
+					<button type="button" class="btn btn-outline-danger"
+						ng-click="deleteTelefone(telefone)">Excluir</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
